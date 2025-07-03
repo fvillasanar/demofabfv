@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"type\":2,\"version\":\"5.65\"}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"type\":2,\"version\":\"5.65\"}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -19,6 +19,27 @@
   ],
   "sections": [
     {
+      "config": "{}",
+      "displayName": "Page 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "3c028fd692bcc60dd992",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0b120a30844d03306e6b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":160,\"y\":80,\"z\":0,\"width\":769,\"height\":498,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"map\",\"projections\":{\"Category\":[{\"queryRef\":\"DimGeography.RegionCountryName\",\"active\":true}],\"Series\":[{\"queryRef\":\"DimStore.StoreName\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d1\",\"Entity\":\"DimStore\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"DimGeography\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"StoreName\"},\"Name\":\"DimStore.StoreName\",\"NativeReferenceName\":\"StoreName\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"RegionCountryName\"},\"Name\":\"DimGeography.RegionCountryName\",\"NativeReferenceName\":\"RegionCountryName\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 498.00,
+          "width": 769.00,
+          "x": 160.00,
+          "y": 80.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
       "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"327L\"}}}}}]}}",
       "displayName": "Página 1",
       "displayOption": 1,
@@ -27,12 +48,12 @@
       "name": "6162917a849e215fc51e",
       "visualContainers": [
         {
-          "config": "{\"name\":\"ebe53594de97a095fd39\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":80,\"z\":0,\"width\":1184,\"height\":544,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(FactSales.SalesQuantity)\"}],\"Category\":[{\"queryRef\":\"DimStore.StoreName\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimStore\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactSales\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"StoreName\"},\"Name\":\"DimStore.StoreName\",\"NativeReferenceName\":\"StoreName\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesQuantity\"}},\"Function\":0},\"Name\":\"Sum(FactSales.SalesQuantity)\",\"NativeReferenceName\":\"Suma de SalesQuantity\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesQuantity\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#55B1F7'\"}}}}}}}]}}}",
+          "config": "{\"name\":\"ebe53594de97a095fd39\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.372093023255815,\"y\":80.37209302325581,\"z\":0,\"width\":1152,\"height\":531.3488372093024,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(FactSales.SalesQuantity)\"}],\"Category\":[{\"queryRef\":\"DimStore.StoreName\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimStore\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactSales\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"StoreName\"},\"Name\":\"DimStore.StoreName\",\"NativeReferenceName\":\"StoreName\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesQuantity\"}},\"Function\":0},\"Name\":\"Sum(FactSales.SalesQuantity)\",\"NativeReferenceName\":\"Suma de SalesQuantity\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesQuantity\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#55B1F7'\"}}}}}}}]}}}",
           "filters": "[{\"name\":\"d70d12500adc5ba9c57d\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimSalesTerritory\"}},\"Property\":\"SalesTerritoryRegion\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimSalesTerritory\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"SalesTerritoryRegion\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Florida'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
-          "height": 544.00,
-          "width": 1184.00,
-          "x": 32.00,
-          "y": 80.00,
+          "height": 531.35,
+          "width": 1152.00,
+          "x": 32.37,
+          "y": 80.37,
           "z": 0.00
         }
       ],
