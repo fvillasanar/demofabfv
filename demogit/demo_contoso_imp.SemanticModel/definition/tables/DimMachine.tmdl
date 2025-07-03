@@ -1,0 +1,165 @@
+table DimMachine
+	lineageTag: a8d9faa1-b818-4a58-a6e0-4d01bfb277fe
+
+	column MachineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fad3e21-db21-4678-95c2-31bdaae299ae
+		summarizeBy: none
+		sourceColumn: MachineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineLabel
+		dataType: string
+		lineageTag: 84daf1cb-9742-4462-8a22-a5bee1564564
+		summarizeBy: none
+		sourceColumn: MachineLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a4eaeeb0-cadf-454f-b73f-1877da33b01e
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineType
+		dataType: string
+		lineageTag: ea2bdd1e-dd94-4296-b3a6-88a1b33c6ec9
+		summarizeBy: none
+		sourceColumn: MachineType
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineName
+		dataType: string
+		lineageTag: 59473fc7-c477-4146-ac8d-c98ac403fd79
+		summarizeBy: none
+		sourceColumn: MachineName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineDescription
+		dataType: string
+		lineageTag: b8b590e7-e198-4d72-a3d5-a791ec600df1
+		summarizeBy: none
+		sourceColumn: MachineDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorName
+		dataType: string
+		lineageTag: 7fa2bfd0-462e-4fad-b641-159bfad9c626
+		summarizeBy: none
+		sourceColumn: VendorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineOS
+		dataType: string
+		lineageTag: 8ecdd647-afde-496f-babe-6d64fe379a03
+		summarizeBy: none
+		sourceColumn: MachineOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineSource
+		dataType: string
+		lineageTag: 55e3e015-fb66-4c84-b596-d9891bca0ffd
+		summarizeBy: none
+		sourceColumn: MachineSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineHardware
+		dataType: string
+		lineageTag: e47c7b12-808f-4ec1-bc5d-b77c6cf2c72b
+		summarizeBy: none
+		sourceColumn: MachineHardware
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineSoftware
+		dataType: string
+		lineageTag: af748610-b84a-4a39-905e-af208425390d
+		summarizeBy: none
+		sourceColumn: MachineSoftware
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 4d64cd75-5bd0-41ed-b12e-2a2652ba8d77
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceStartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d29fb9b9-f64b-44e3-bbf2-46e13335e44d
+		summarizeBy: none
+		sourceColumn: ServiceStartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DecommissionDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ae9ae936-546a-4730-97f2-3979867ae96c
+		summarizeBy: none
+		sourceColumn: DecommissionDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8f8904dd-e713-4ea5-9dec-804a0c9e132c
+		summarizeBy: none
+		sourceColumn: LastModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: f71b8df2-5d43-4dd3-8bc7-47c48ee05221
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 19efa785-508d-4e26-8d4a-93d0efebd0f1
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c84008c0-4054-40fa-8894-21701e215b98
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimMachine = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimMachine = democontosodbfv{[Schema="dbo",Item="DimMachine"]}[Data]
+				in
+				    dbo_DimMachine
+

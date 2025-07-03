@@ -1,0 +1,82 @@
+table DimProductSubcategory
+	lineageTag: 9cae30b2-7d6d-4bcf-9e36-e371e56bb0d2
+
+	column ProductSubcategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b3daeaf2-dbcc-4106-8c44-2e9c6e318992
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategoryLabel
+		dataType: string
+		lineageTag: 7b4374bc-a400-4b0f-9e89-7cb96119e707
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategoryName
+		dataType: string
+		lineageTag: 55e52723-a230-4e5a-8566-d06cd59ecfb5
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategoryDescription
+		dataType: string
+		lineageTag: 177943e6-326d-4587-a429-e983f69903df
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 92374335-6a6f-420c-8689-9c2515b2cc8d
+		summarizeBy: none
+		sourceColumn: ProductCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 55cbbba0-2c91-4263-8b4c-fb11c4f25a30
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e6c6f376-c182-47f7-9a78-432fdf8c0a67
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b2c189a8-322b-4ea8-91b0-2a9101e19b6d
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProductSubcategory = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimProductSubcategory = democontosodbfv{[Schema="dbo",Item="DimProductSubcategory"]}[Data]
+				in
+				    dbo_DimProductSubcategory
+

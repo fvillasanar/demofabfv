@@ -1,0 +1,141 @@
+table DimSalesTerritory
+	lineageTag: 2e29c219-9e92-4634-b05a-59877824f08f
+
+	column SalesTerritoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c08e3a3c-2f74-49f5-b299-3eb6c46b49d6
+		summarizeBy: count
+		sourceColumn: SalesTerritoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 18d0a1fb-64fb-4c05-ac93-cd6229efdb30
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryLabel
+		dataType: string
+		lineageTag: 7aff4f67-b09f-4ed9-a54f-747aa18389e6
+		summarizeBy: none
+		sourceColumn: SalesTerritoryLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryName
+		dataType: string
+		lineageTag: b7e9f3a8-216d-4530-9427-a6c4f4e9379e
+		summarizeBy: none
+		sourceColumn: SalesTerritoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryRegion
+		dataType: string
+		lineageTag: f8e663df-19b4-4d89-8e5e-2058e479cd1c
+		summarizeBy: none
+		sourceColumn: SalesTerritoryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryCountry
+		dataType: string
+		lineageTag: 70581956-fb82-48c6-a512-c97ec6d2252a
+		summarizeBy: none
+		sourceColumn: SalesTerritoryCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryGroup
+		dataType: string
+		lineageTag: 2e11c98a-3502-4cca-b874-ea25a39da51d
+		summarizeBy: none
+		sourceColumn: SalesTerritoryGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryLevel
+		dataType: string
+		lineageTag: 3ac7d0b6-c263-473e-b550-a3306bcfbcf3
+		summarizeBy: none
+		sourceColumn: SalesTerritoryLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryManager
+		dataType: int64
+		formatString: 0
+		lineageTag: 37166d4b-8b2f-4dec-888d-b3cadbeb5aaf
+		summarizeBy: sum
+		sourceColumn: SalesTerritoryManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8b89f62b-4efe-4ad8-828a-0d29c5ba2fa8
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2c8601a6-c3d0-4486-93e5-d6a3fdeddbdc
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 360c8c63-4ebb-4036-b3e4-19b1eb1ecbfb
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 58907873-8ec8-4698-83dc-ce389e9a663a
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7d8cde0d-5aea-4a16-b4d3-c2d0ef5555f8
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 33a7cb96-ed61-400b-ad89-67ac5a14838b
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSalesTerritory = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimSalesTerritory = democontosodbfv{[Schema="dbo",Item="DimSalesTerritory"]}[Data]
+				in
+				    dbo_DimSalesTerritory
+

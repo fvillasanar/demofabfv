@@ -1,0 +1,73 @@
+table DimChannel
+	lineageTag: cce6f7e1-83d1-42e7-9642-9bcfdcba863e
+
+	column ChannelKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 83c6dc32-16db-45e2-8ee1-c9308a4aa9db
+		summarizeBy: none
+		sourceColumn: ChannelKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelLabel
+		dataType: string
+		lineageTag: 1b05073f-0626-4b9a-9d71-52b873a3df79
+		summarizeBy: none
+		sourceColumn: ChannelLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelName
+		dataType: string
+		lineageTag: 767bcdb2-7226-4629-bbb4-6eeff107aa04
+		summarizeBy: none
+		sourceColumn: ChannelName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelDescription
+		dataType: string
+		lineageTag: 1e920381-291a-4282-81ce-43f297572c8d
+		summarizeBy: none
+		sourceColumn: ChannelDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d312645-2b4d-419c-ba48-657e3d4e26ef
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 172b39e7-571a-4ab1-b9ec-45dbc2036d87
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 62f28a1f-4659-46ad-951f-e44a4c35b454
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimChannel = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimChannel = democontosodbfv{[Schema="dbo",Item="DimChannel"]}[Data]
+				in
+				    dbo_DimChannel
+

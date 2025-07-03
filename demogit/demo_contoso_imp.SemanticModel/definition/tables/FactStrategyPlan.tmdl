@@ -1,0 +1,116 @@
+table FactStrategyPlan
+	lineageTag: f3b1592c-7856-451f-973e-45cb9a58c7ab
+
+	column StrategyPlanKey
+		dataType: int64
+		formatString: 0
+		lineageTag: acfcbc4a-7d34-41a7-9f2c-1e74f2223cdd
+		summarizeBy: count
+		sourceColumn: StrategyPlanKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Datekey
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c0764ad9-6625-4b8e-a240-3d969f2201e1
+		summarizeBy: none
+		sourceColumn: Datekey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f31007c-1b61-49b5-b8dd-39dbcf93dfff
+		summarizeBy: none
+		sourceColumn: EntityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f6aae76f-fd13-404a-a415-7da426767140
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 01c13860-0746-407b-9de7-2b7f31888596
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bb26f91-1af1-4bb6-918e-d9d1d81007e2
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a53e5c0f-c387-455b-a2ff-718accfe41cd
+		summarizeBy: none
+		sourceColumn: ProductCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 91a94a90-5bde-4e3e-8c6f-61898af35777
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 605bf715-bd00-4ab9-9261-459f230f3e97
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1a5d39e6-2d78-4bda-a751-02becb48c0c5
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3efeccc0-c0ee-490a-956f-7921f7a2b999
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactStrategyPlan = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_FactStrategyPlan = democontosodbfv{[Schema="dbo",Item="FactStrategyPlan"]}[Data]
+				in
+				    dbo_FactStrategyPlan
+
+	annotation PBI_ResultType = Table
+

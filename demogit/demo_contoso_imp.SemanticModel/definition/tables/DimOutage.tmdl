@@ -1,0 +1,105 @@
+table DimOutage
+	lineageTag: 74dd1b8a-cdec-466d-b790-3e7e835836e6
+
+	column OutageKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dd4d9bfa-970a-4426-9fb3-c81103e6d331
+		summarizeBy: none
+		sourceColumn: OutageKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageLabel
+		dataType: string
+		lineageTag: 63e288b4-5fd6-475e-8a97-e9be21ad870f
+		summarizeBy: none
+		sourceColumn: OutageLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageName
+		dataType: string
+		lineageTag: 517dc414-ffa7-4455-92f3-ef3932b45974
+		summarizeBy: none
+		sourceColumn: OutageName
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageDescription
+		dataType: string
+		lineageTag: 065a26e3-dfd4-4f32-833c-269a589bd0df
+		summarizeBy: none
+		sourceColumn: OutageDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageType
+		dataType: string
+		lineageTag: 97d3cb75-cc26-4106-b341-164105bbff93
+		summarizeBy: none
+		sourceColumn: OutageType
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageTypeDescription
+		dataType: string
+		lineageTag: 4ed04f12-de72-4be3-b025-37896cea6df9
+		summarizeBy: none
+		sourceColumn: OutageTypeDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageSubType
+		dataType: string
+		lineageTag: 533e8c7a-f91a-4b3b-9359-a8baee5f595d
+		summarizeBy: none
+		sourceColumn: OutageSubType
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageSubTypeDescription
+		dataType: string
+		lineageTag: 97aef509-b380-4eca-a0b3-7380a4a754b1
+		summarizeBy: none
+		sourceColumn: OutageSubTypeDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2caeecb2-aa50-40af-abde-2e2c01272cea
+		summarizeBy: none
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c8386a4f-f0bd-4141-b08d-ef096af9102c
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 987394a2-abb5-4bdf-8647-0f3037aae359
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimOutage = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimOutage = democontosodbfv{[Schema="dbo",Item="DimOutage"]}[Data]
+				in
+				    dbo_DimOutage
+

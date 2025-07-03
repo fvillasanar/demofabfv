@@ -1,0 +1,73 @@
+table DimScenario
+	lineageTag: 56b9fd50-2a44-4ee5-9c89-5573fcff7c0d
+
+	column ScenarioKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ee71dd14-5eca-4c54-9654-fdc877b6e6da
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioLabel
+		dataType: string
+		lineageTag: 8f363d99-e57e-4cba-83a8-6adb24658c37
+		summarizeBy: none
+		sourceColumn: ScenarioLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioName
+		dataType: string
+		lineageTag: c4c0ba4c-3c45-4726-b6c9-12a4e595c0b9
+		summarizeBy: none
+		sourceColumn: ScenarioName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioDescription
+		dataType: string
+		lineageTag: 585755a7-2712-4dde-891d-2153a8b071f9
+		summarizeBy: none
+		sourceColumn: ScenarioDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6304dc15-f872-464b-af96-d3efb16a0e26
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a8ae6a3e-f3d9-415f-a98f-7ae514c0c64d
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 527bf7be-0325-4185-8f5e-b73c2d4f2a47
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimScenario = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimScenario = democontosodbfv{[Schema="dbo",Item="DimScenario"]}[Data]
+				in
+				    dbo_DimScenario
+

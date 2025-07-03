@@ -1,0 +1,73 @@
+table DimCurrency
+	lineageTag: a42a9be7-115d-4c0d-b267-c412bfd252eb
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f3d1fc2e-6981-427d-8b5f-ad5e5dedcbed
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyLabel
+		dataType: string
+		lineageTag: 75d0d01a-8c98-4886-b284-3a36d0334240
+		summarizeBy: none
+		sourceColumn: CurrencyLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyName
+		dataType: string
+		lineageTag: 252e5701-860a-4d20-94df-96e4e61900c2
+		summarizeBy: none
+		sourceColumn: CurrencyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyDescription
+		dataType: string
+		lineageTag: b7e578d6-8a82-4253-a071-d89246fe284f
+		summarizeBy: none
+		sourceColumn: CurrencyDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: df129c2b-6ade-4ec9-9b4f-75cad7486441
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6f0bdcc2-0d8d-4312-a023-b6752a2e05d5
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8ce9ba4b-c4ce-4c6f-8302-c8b2c3e4c6ca
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCurrency = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimCurrency = democontosodbfv{[Schema="dbo",Item="DimCurrency"]}[Data]
+				in
+				    dbo_DimCurrency
+

@@ -1,0 +1,73 @@
+table DimProductCategory
+	lineageTag: 7fbe451c-00fb-462c-bb7f-acb9fafd4975
+
+	column ProductCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ff46ecd-acf3-445f-a186-ac5f7cefe699
+		summarizeBy: none
+		sourceColumn: ProductCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryLabel
+		dataType: string
+		lineageTag: 04818d5f-f627-4af8-af7d-8c244359dc9d
+		summarizeBy: none
+		sourceColumn: ProductCategoryLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryName
+		dataType: string
+		lineageTag: a3320b36-151b-447d-a0dc-ec37d74bdeda
+		summarizeBy: none
+		sourceColumn: ProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryDescription
+		dataType: string
+		lineageTag: 41071892-394d-4309-a8b0-c948c6f02bcc
+		summarizeBy: none
+		sourceColumn: ProductCategoryDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 99284aed-c87c-487e-9782-7295c30e0f74
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2f5ae7ad-0184-4cb8-b6c8-3b6857f91ce2
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d112941a-f0a6-4a18-adb2-8c1d84c1794f
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProductCategory = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimProductCategory = democontosodbfv{[Schema="dbo",Item="DimProductCategory"]}[Data]
+				in
+				    dbo_DimProductCategory
+
