@@ -1,0 +1,87 @@
+table FactExchangeRate
+	lineageTag: 210ec52f-cb4b-40cf-8ede-6ad687a48c39
+
+	column ExchangeRateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cf040ee-d4a7-4302-bba7-02a57eff4ca8
+		summarizeBy: count
+		sourceColumn: ExchangeRateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b3315b8-f96d-4b57-aefc-32bb355a93f9
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d4958e50-8e58-4a43-bf88-7c92b5c903ec
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AverageRate
+		dataType: double
+		lineageTag: f0f5e8a4-0cc2-40c2-96ae-72aa67dd280f
+		summarizeBy: sum
+		sourceColumn: AverageRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EndOfDayRate
+		dataType: double
+		lineageTag: df757920-8eac-4095-8cd2-54ddb8139180
+		summarizeBy: sum
+		sourceColumn: EndOfDayRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: b5349dac-2739-4fe8-b768-6dddfcc09923
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 85f45302-360f-4604-9ebc-3288d3f5ed93
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4d302c73-52d3-4520-a0f7-7d98d9e06a08
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactExchangeRate = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_FactExchangeRate = democontosodbfv{[Schema="dbo",Item="FactExchangeRate"]}[Data]
+				in
+				    dbo_FactExchangeRate
+

@@ -1,0 +1,86 @@
+table FactITMachine
+	lineageTag: 12a97e30-9021-435f-be21-781a60a7a269
+
+	column ITMachinekey
+		dataType: int64
+		formatString: 0
+		lineageTag: f23248b2-5b84-42fe-af46-12e0ca2de99b
+		summarizeBy: sum
+		sourceColumn: ITMachinekey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1206219e-26c6-44e9-b3c5-089969fd28bf
+		summarizeBy: none
+		sourceColumn: MachineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Datekey
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6836d9e9-308c-4e0a-b5f3-0fa46ca265d3
+		summarizeBy: none
+		sourceColumn: Datekey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostAmount
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: ab566484-abf1-4873-92e4-d2b41776256f
+		summarizeBy: sum
+		sourceColumn: CostAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column CostType
+		dataType: string
+		lineageTag: b2e4b5cc-57d5-4f8a-8e73-f49caaa00d57
+		summarizeBy: none
+		sourceColumn: CostType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 011fbba2-8d43-44fb-8099-ec3565d927d4
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f8b0ccd1-d68a-41a8-b47f-efe7c164c5d6
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b7a0a12b-c0d1-4da1-8def-e50f1ec0cb1e
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactITMachine = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_FactITMachine = democontosodbfv{[Schema="dbo",Item="FactITMachine"]}[Data]
+				in
+				    dbo_FactITMachine
+

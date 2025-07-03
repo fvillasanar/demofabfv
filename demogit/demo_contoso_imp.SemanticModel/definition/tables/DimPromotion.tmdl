@@ -1,0 +1,135 @@
+table DimPromotion
+	lineageTag: 1258508c-048f-401f-839d-2f1387c8d455
+
+	column PromotionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b2e44f3-243d-439b-b2b1-095b6e06478d
+		summarizeBy: none
+		sourceColumn: PromotionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionLabel
+		dataType: string
+		lineageTag: 902f06da-98a1-4f6b-abb8-b057111c0916
+		summarizeBy: none
+		sourceColumn: PromotionLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionName
+		dataType: string
+		lineageTag: 74584e4b-25e4-498c-8706-965b9de56694
+		summarizeBy: none
+		sourceColumn: PromotionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionDescription
+		dataType: string
+		lineageTag: 3edf1767-eaf2-41d9-bb3a-f301cb708823
+		summarizeBy: none
+		sourceColumn: PromotionDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPercent
+		dataType: double
+		lineageTag: c15b8862-7d53-4c19-ba2c-6b4a3f487f16
+		summarizeBy: sum
+		sourceColumn: DiscountPercent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PromotionType
+		dataType: string
+		lineageTag: 245acc38-b1df-4746-8453-4925b5eecf08
+		summarizeBy: none
+		sourceColumn: PromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionCategory
+		dataType: string
+		lineageTag: 2ee76dba-e2cb-49fd-8b7f-414f3c625255
+		summarizeBy: none
+		sourceColumn: PromotionCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6d97e288-d0b1-419a-9581-e58a91256bd0
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0126f295-a7ed-40b0-9ac3-5a597742b35c
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: db277a76-3dde-4328-9e9d-0cbcc699e857
+		summarizeBy: sum
+		sourceColumn: MinQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 030ce3c4-0862-4e1e-a394-170b90201ee7
+		summarizeBy: sum
+		sourceColumn: MaxQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 053529b9-3e6b-4534-bffa-d6bd5981aced
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 20e6faf3-1c80-4e22-a242-aadafb28ff49
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b385e07e-064b-426d-aa24-aa9b8d7f4152
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPromotion = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimPromotion = democontosodbfv{[Schema="dbo",Item="DimPromotion"]}[Data]
+				in
+				    dbo_DimPromotion
+

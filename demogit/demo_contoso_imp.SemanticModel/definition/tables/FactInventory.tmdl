@@ -1,0 +1,159 @@
+table FactInventory
+	lineageTag: ce9a3c2a-28b1-48a8-840f-01ffc8523837
+
+	column InventoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 218e79b4-a82c-4a86-9b20-cd968960b5fc
+		summarizeBy: count
+		sourceColumn: InventoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 32baba82-106e-46ba-89c2-6151c1610a96
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d37a3f81-e17a-4846-bd0b-e500e49dd1b1
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b0dae819-2ba4-4784-9285-8ddabd807179
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c0a6ff42-a310-4493-b546-29044e891b62
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnHandQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 41563c71-d52a-4023-ac1e-84179e05fde4
+		summarizeBy: sum
+		sourceColumn: OnHandQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnOrderQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 302a21d7-101b-4fa3-97b0-ec50576f4f58
+		summarizeBy: sum
+		sourceColumn: OnOrderQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column SafetyStockQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ba4ee73-b971-4ada-9960-09f1dd4f26d5
+		summarizeBy: sum
+		sourceColumn: SafetyStockQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 555ef814-0845-4331-8f79-fef97d4b3ac1
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column DaysInStock
+		dataType: int64
+		formatString: 0
+		lineageTag: 08b85117-c281-49d2-b48d-bb57bf7e4129
+		summarizeBy: sum
+		sourceColumn: DaysInStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinDayInStock
+		dataType: int64
+		formatString: 0
+		lineageTag: 12ad9f42-df57-43b9-99ca-725a5c117873
+		summarizeBy: sum
+		sourceColumn: MinDayInStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxDayInStock
+		dataType: int64
+		formatString: 0
+		lineageTag: 3fbf9b9d-ea00-4745-9c3f-e6831bfc44c6
+		summarizeBy: sum
+		sourceColumn: MaxDayInStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column Aging
+		dataType: int64
+		formatString: 0
+		lineageTag: c38cc17c-97cd-4376-b8d7-659c1e66c4bf
+		summarizeBy: sum
+		sourceColumn: Aging
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 90881922-c415-4537-9eb3-178a90020601
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bd01ee9b-6e99-473b-b33f-1cd7a08d235c
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c4931ae7-fd4d-4333-a2a6-6c343d439e76
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactInventory = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_FactInventory = democontosodbfv{[Schema="dbo",Item="FactInventory"]}[Data]
+				in
+				    dbo_FactInventory
+

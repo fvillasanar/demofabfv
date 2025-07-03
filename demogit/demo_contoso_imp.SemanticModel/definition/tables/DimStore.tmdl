@@ -1,0 +1,210 @@
+table DimStore
+	lineageTag: 45f2ec5a-f576-4741-812c-6379ccaacab4
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9618384b-a17f-401a-94f2-aa78c36195c0
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d719e12-15ca-4d90-b0f5-de8108b9a72f
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreManager
+		dataType: int64
+		formatString: 0
+		lineageTag: 6199fa8a-c1db-44bf-ae46-9d9ebdd07f9c
+		summarizeBy: sum
+		sourceColumn: StoreManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreType
+		dataType: string
+		lineageTag: 7654bb6a-f23d-4e61-a40f-06d00dd0a3b1
+		summarizeBy: none
+		sourceColumn: StoreType
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreName
+		dataType: string
+		lineageTag: d7aaabde-d0bf-46a1-aec0-5c9841ddbf64
+		summarizeBy: none
+		sourceColumn: StoreName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreDescription
+		dataType: string
+		lineageTag: 2a81f2fe-7229-4a74-b96c-e0700b52ea17
+		summarizeBy: none
+		sourceColumn: StoreDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 8909026e-4e6f-40f0-aa88-8591de129906
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpenDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 39f85293-700a-430f-ba74-130c6dc06c04
+		summarizeBy: none
+		sourceColumn: OpenDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column CloseDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 38132c36-68d8-4e4e-ad90-5f26317deb0f
+		summarizeBy: none
+		sourceColumn: CloseDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c1d3b01b-5c44-4843-9262-65d2ebd31a86
+		summarizeBy: none
+		sourceColumn: EntityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZipCode
+		dataType: string
+		lineageTag: 4b62773d-d6d4-49d0-ad19-54c16351f78d
+		summarizeBy: none
+		sourceColumn: ZipCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZipCodeExtension
+		dataType: string
+		lineageTag: 32f3bf8a-45da-4c5c-b951-8082684b790f
+		summarizeBy: none
+		sourceColumn: ZipCodeExtension
+
+		annotation SummarizationSetBy = Automatic
+
+	column StorePhone
+		dataType: string
+		lineageTag: 9c3b0998-3596-4015-b50d-87058fd95ee2
+		summarizeBy: none
+		sourceColumn: StorePhone
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreFax
+		dataType: string
+		lineageTag: 7bd83e33-8473-4556-9af5-1190d75e4629
+		summarizeBy: none
+		sourceColumn: StoreFax
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		lineageTag: ce28ee75-65f1-4017-a4f4-081ab59575d4
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine2
+		dataType: string
+		lineageTag: a978674e-a333-49b0-89a6-28de1df9ec3f
+		summarizeBy: none
+		sourceColumn: AddressLine2
+
+		annotation SummarizationSetBy = Automatic
+
+	column CloseReason
+		dataType: string
+		lineageTag: 20de40e0-fe6f-4c92-8a11-25ae61d9237a
+		summarizeBy: none
+		sourceColumn: CloseReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeCount
+		dataType: int64
+		formatString: 0
+		lineageTag: dca43ac9-c454-4e56-87f3-c1fa2d2c370f
+		summarizeBy: sum
+		sourceColumn: EmployeeCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column SellingAreaSize
+		dataType: double
+		lineageTag: b01ca295-5377-4ddb-8f32-42d64f022ff2
+		summarizeBy: sum
+		sourceColumn: SellingAreaSize
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LastRemodelDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3c2c2c0b-5846-4aa7-99d4-4d4914783d66
+		summarizeBy: none
+		sourceColumn: LastRemodelDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: e44195a9-3767-4dfc-84eb-beacd59f57c8
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dc60aba0-ac1f-4a82-aeb9-13f6f160e7bf
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6f62e439-24cb-466e-b4fe-b96534661f99
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimStore = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimStore = democontosodbfv{[Schema="dbo",Item="DimStore"]}[Data]
+				in
+				    dbo_DimStore
+

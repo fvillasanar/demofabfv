@@ -1,0 +1,112 @@
+table FactITSLA
+	lineageTag: cb62200a-59b0-4e31-abfb-3a30fcc2c4c4
+
+	column ITSLAkey
+		dataType: int64
+		formatString: 0
+		lineageTag: 77a705ea-0a06-4a24-b81c-99fbc0678a55
+		summarizeBy: sum
+		sourceColumn: ITSLAkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2c1469a5-b7c2-4f70-9203-79a1a696b073
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ac847d50-7d55-448f-9dc4-d6a2f810c1a8
+		summarizeBy: count
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a6f7c0b5-df0c-43c6-b501-3b36b9fb6093
+		summarizeBy: none
+		sourceColumn: MachineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c569180-9b5d-4008-a2c7-e6175908ec3a
+		summarizeBy: none
+		sourceColumn: OutageKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageStartTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e56540a6-f114-4ece-ad72-739f478e14f2
+		summarizeBy: none
+		sourceColumn: OutageStartTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutageEndTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: caa16c64-4e14-4232-9ea7-7f40c9882a91
+		summarizeBy: none
+		sourceColumn: OutageEndTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column DownTime
+		dataType: int64
+		formatString: 0
+		lineageTag: 13198b44-96db-4a1f-8a07-2816d8b1951d
+		summarizeBy: sum
+		sourceColumn: DownTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ccbbedb-bd00-49fd-944c-ad50e7e617a5
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f4764100-39ad-4f1a-8e6b-eba8607510c3
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a980cbb1-53f3-49ba-8758-667b98ae22bc
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactITSLA = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_FactITSLA = democontosodbfv{[Schema="dbo",Item="FactITSLA"]}[Data]
+				in
+				    dbo_FactITSLA
+

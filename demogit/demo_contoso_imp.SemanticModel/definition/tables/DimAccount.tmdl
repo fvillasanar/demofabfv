@@ -1,0 +1,122 @@
+table DimAccount
+	lineageTag: e124ffe5-1f36-47aa-ad89-50ea8d1d9d83
+
+	column AccountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 84b7df57-3f6b-4956-bb29-dc79fc909658
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentAccountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9490fa49-69bf-4732-b94f-77e4cd7f1b93
+		summarizeBy: none
+		sourceColumn: ParentAccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountLabel
+		dataType: string
+		lineageTag: 3b1dc0ff-c870-4e0f-9f36-a675c7e53280
+		summarizeBy: none
+		sourceColumn: AccountLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountName
+		dataType: string
+		lineageTag: f87935e1-b3cf-4aba-b306-0b3c5f3fa745
+		summarizeBy: none
+		sourceColumn: AccountName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountDescription
+		dataType: string
+		lineageTag: 1d7fcda6-3348-4b05-bbd6-aa26a4de902e
+		summarizeBy: none
+		sourceColumn: AccountDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		dataType: string
+		lineageTag: c23bf39f-5049-44f6-8d9d-525d2fbba5cf
+		summarizeBy: none
+		sourceColumn: AccountType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Operator
+		dataType: string
+		lineageTag: 167c0f51-63a1-4449-ae2c-f14aeab6600e
+		summarizeBy: none
+		sourceColumn: Operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomMembers
+		dataType: string
+		lineageTag: 3f20b467-3d03-4542-badf-937ee466b4d3
+		summarizeBy: none
+		sourceColumn: CustomMembers
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValueType
+		dataType: string
+		lineageTag: 9b94326f-95ea-465c-b8b1-09ffd8deeede
+		summarizeBy: none
+		sourceColumn: ValueType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomMemberOptions
+		dataType: string
+		lineageTag: 35d50597-bd8e-4f5e-a001-0917c0d56320
+		summarizeBy: none
+		sourceColumn: CustomMemberOptions
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b2a9050-a655-4bc3-b882-05c85ee42005
+		summarizeBy: none
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1acc6038-8eef-49dc-af07-e2800d673e12
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a3baee8-ca8f-4c1d-a093-b12a257c7979
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAccount = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimAccount = democontosodbfv{[Schema="dbo",Item="DimAccount"]}[Data]
+				in
+				    dbo_DimAccount
+

@@ -1,0 +1,138 @@
+table FactSalesQuota
+	lineageTag: 63ef20f2-12ca-4d84-91a5-b124fbf69ee2
+
+	column SalesQuotaKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a45be521-e793-466e-877b-fc45388abd9a
+		summarizeBy: count
+		sourceColumn: SalesQuotaKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f22fbd34-c6b8-453f-92c1-0258f51c8938
+		summarizeBy: none
+		sourceColumn: ChannelKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 12bb79dd-e96a-476a-b4dc-488ca088a0dc
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ad1abfc-6506-4e37-83fe-c7b0d62b53b9
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 647c368f-f908-4348-96a1-65da66732d1e
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e34dd6c7-ef19-4f03-b53b-10820eb87b65
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 820e9904-8a68-420c-9b06-ed536e821665
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQuantityQuota
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: d0cd6216-1dd3-46e7-8621-94326a1c7a4f
+		summarizeBy: sum
+		sourceColumn: SalesQuantityQuota
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column SalesAmountQuota
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: e4a43967-dd27-42a8-945a-2ad74d90ee1e
+		summarizeBy: sum
+		sourceColumn: SalesAmountQuota
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column GrossMarginQuota
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: d9fdbf08-abea-41e6-85f2-2cd5d40655ad
+		summarizeBy: sum
+		sourceColumn: GrossMarginQuota
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-ES"}
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: b4edabac-8cbd-4169-80af-dd7fa15ed70e
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c57626fa-9aae-49c3-92fd-ad0902015561
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ca930601-ffdb-41d6-854d-a83cb14c2954
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSalesQuota = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_FactSalesQuota = democontosodbfv{[Schema="dbo",Item="FactSalesQuota"]}[Data]
+				in
+				    dbo_FactSalesQuota
+
+	annotation PBI_ResultType = Table
+

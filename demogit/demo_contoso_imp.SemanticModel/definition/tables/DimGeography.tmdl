@@ -1,0 +1,89 @@
+table DimGeography
+	lineageTag: f6e50578-94f7-48f3-a49f-a8535ee7ec71
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f46f1a6-6efb-495b-b9bb-7eba48da08f0
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyType
+		dataType: string
+		lineageTag: 75445bcb-ce20-42f3-8822-b9cb352b9399
+		summarizeBy: none
+		sourceColumn: GeographyType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContinentName
+		dataType: string
+		lineageTag: a47c9de0-9f8e-4bcb-8a48-ea53b7dfcd5a
+		summarizeBy: none
+		sourceColumn: ContinentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CityName
+		dataType: string
+		lineageTag: 7314888a-91f2-4810-898d-8f7b605788d3
+		summarizeBy: none
+		sourceColumn: CityName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvinceName
+		dataType: string
+		lineageTag: 496b05fd-1da3-4c27-8d1c-3d31a3a1937e
+		summarizeBy: none
+		sourceColumn: StateProvinceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionCountryName
+		dataType: string
+		lineageTag: 3c5b20cf-b426-4c21-951c-e98dac8eed3f
+		summarizeBy: none
+		sourceColumn: RegionCountryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: 04433e86-e29a-4ba6-b942-a45b901e225b
+		summarizeBy: count
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89146172-7ab2-466a-aa40-2e446414aaf5
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 392f7a29-e43c-4f29-87bf-b8126ae101c4
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimGeography = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("democontosodbfv.database.windows.net"),
+				    democontosodbfv = Origen{[Name="democontosodbfv"]}[Data],
+				    dbo_DimGeography = democontosodbfv{[Schema="dbo",Item="DimGeography"]}[Data]
+				in
+				    dbo_DimGeography
+
